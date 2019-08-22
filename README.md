@@ -1,0 +1,2 @@
+# muwubot
+Discord bot
