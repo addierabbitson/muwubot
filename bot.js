@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 // const client = new Discord.Client();
 // var Discord = require('discord.io');
 const bot = new Discord.Client({
-   login: auth.token,
+   login: process.env.BOT_TOKEN,
    disableEveryone: true
 });
 bot.login(process.env.BOT_TOKEN);
