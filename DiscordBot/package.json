@@ -1,0 +1,12 @@
+{
+    "name": "muwu-bot",
+    "version": "1.0.0",
+    "description": "Qt bot for chat stuffffffff",
+    "main": "bot.js",
+    "author": "meedie#1400",
+    "dependencies": {
+        "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+        "discord.js": "^11.5.1",
+        "winston": "^3.2.1"
+    }
+}
