@@ -7,7 +7,7 @@ const bot = new Discord.Client({
    login: auth.token,
    disableEveryone: true
 });
-bot.login(auth.token);
+bot.login(process.env.BOT_TOKEN);
 
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
