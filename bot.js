@@ -73,8 +73,10 @@ bot.on('message', async message => {
         'https://media3.giphy.com/media/88EAY5lvJ2Ew0/giphy.gif'
     ]
 
-    if (message.content.includes(" PM") || message.content.includes(" pm") || message.content.includes(" Pm") || message.content.includes("PM ") || message.content.includes("pm ") || message.content.includes("Pm ") || message.content.includes("PM?") || message.content.includes("pm?") || message.content.includes("Pm?") || message.content.includes("DM?") || message.content.includes("dm?") || message.content.includes("Dm?") || message.content.includes("Dm ") || message.content.includes("DM ") || message.content.includes("dm ") || message.content.includes(" Dm") || message.content.includes(" DM") || message.content.includes(" dm") && message.channel.name !== "looking-for-dm") {
-        message.channel.send("pls go to " + bot.channels.get(lookingForDm) + " when asking about dms!! " + bot.users.get(message.member.user.id));
+    if (message.content.includes(" PM") || message.content.includes(" pm") || message.content.includes(" Pm") || message.content.includes("PM ") || message.content.includes("pm ") || message.content.includes("Pm ") || message.content.includes("PM?") || message.content.includes("pm?") || message.content.includes("Pm?") || message.content.includes("DM?") || message.content.includes("dm?") || message.content.includes("Dm?") || message.content.includes("Dm ") || message.content.includes("DM ") || message.content.includes("dm ") || message.content.includes(" Dm") || message.content.includes(" DM") || message.content.includes(" dm")) {
+        if (message.channel.name !== "looking-for-dm") {
+            message.channel.send("pls go to " + bot.channels.get(lookingForDm) + " when asking about dms!! " + bot.users.get(message.member.user.id));
+        }
     }
 
     if (message.content.includes("uwu") || message.content.includes("Uwu") || message.content.includes("UWU") || message.content.includes("UwU") || message.content.includes("uWu")) {
