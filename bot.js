@@ -1,43 +1,30 @@
+// LIBRARIES
 const logger = require('winston');
 const auth = require('./auth.json');
 const Discord = require("discord.js");
-// const client = new Discord.Client();
-// var Discord = require('discord.io');
+
+// SETUP BOT LOGIN W/ TOKEN
 const bot = new Discord.Client({
    login: process.env.BOT_TOKEN,
    disableEveryone: true
 });
 bot.login(process.env.BOT_TOKEN);
 
+// DEBUGGING
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
     colorize: true
 });
 logger.level = 'debug';
 
+// LOG LOGGING IN TO DISCORD BOT API
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
-/*bot.on('message', function (user, userID, channelID, message, evt) {
-    if (message.substring(0, 1) == '!') {
-        var args = message.substring(1).split(' ');
-        var cmd = args[0];
-       
-        args = args.splice(1);
-        switch(cmd) {
-            case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'Pongu uwu'
-                });
-            break;
-         }
-     }
-}); */
-
+// AUTO DETECT MESSAGES ---> SENDING SIMPLE RESPONSE
 bot.on('message', async message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
@@ -73,28 +60,53 @@ bot.on('message', async message => {
         'https://media3.giphy.com/media/88EAY5lvJ2Ew0/giphy.gif'
     ]
 
+    // AUTO DETECTING WRONG CHANNELS
     if (message.content.includes(" PM") || message.content.includes(" pm") || message.content.includes(" Pm") || message.content.includes("PM ") || message.content.includes("pm ") || message.content.includes("Pm ") || message.content.includes("PM?") || message.content.includes("pm?") || message.content.includes("Pm?") || message.content.includes("DM?") || message.content.includes("dm?") || message.content.includes("Dm?") || message.content.includes("Dm ") || message.content.includes("DM ") || message.content.includes("dm ") || message.content.includes(" Dm") || message.content.includes(" DM") || message.content.includes(" dm")) {
         if (message.channel.name !== "looking-for-dm") {
             message.channel.send("pls go to " + bot.channels.get(lookingForDm) + " when asking about dms!! " + bot.users.get(message.member.user.id));
         }
     }
-
     if (message.content.includes("uwu") || message.content.includes("Uwu") || message.content.includes("UWU") || message.content.includes("UwU") || message.content.includes("uWu")) {
         message.channel.send({
             file: uwu_imgs[Math.floor(Math.random() * uwu_imgs.length)]
         });
     }
-
     if (message.content.includes("send noods") || message.content.includes("Send noods") || message.content.includes("Send Noods") || message.content.includes("SEND NOODS") || message.content.includes("SEND NUDES") || message.content.includes("send nudes") || message.content.includes("Send nudes") || message.content.includes("send Nudes") || message.content.includes("Send Nudes")) {
         message.channel.send("here is ur noodles uwu ", {
             file: noods_imgs[Math.floor(Math.random() * noods_imgs.length)]
         });
     }
-
     if (!message.member.roles.has(dmsOpen) && !message.member.roles.has(dmsClose) && !message.member.roles.has(dmsAsk)) {
         message.channel.send("pls set ur roles in " + bot.channels.get(selfAssignRoles) + " " + bot.users.get(message.member.user.id));
     }
+
+    // ADMIN COMMANDS
+    if (message.member.hasPermission('ADMINISTRATOR')) {
+        if(message.content.startsWith(`${prefix}`)) {
+
+        }
+    }
+    
 });
 
 // HERE IS BOT LINK:
 // https://discordapp.com/oauth2/authorize?&client_id=613595748897914890&scope=bot&permissions=8
+//
+// EXTRA NOTES:
+//
+/* bot.on('message', function (user, userID, channelID, message, evt) {
+    if (message.substring(0, 1) == '!') {
+        var args = message.substring(1).split(' ');
+        var cmd = args[0];
+       
+        args = args.splice(1);
+        switch(cmd) {
+            case 'ping':
+                bot.sendMessage({
+                    to: channelID,
+                    message: 'Pongu uwu'
+                });
+            break;
+         }
+     }
+}); */
